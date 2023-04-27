@@ -1,26 +1,17 @@
-from PyQt6.QtWidgets import QWidget
-from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6.QtWidgets import QMainWindow, QWidget, QPushButton, QFileDialog
 from pyqtgraph import PlotWidget
 
-
-class GraphWidget(QWidget):
-    def __init__(self):
+class GraphWidget(QMainWindow):
+    def __init__(self, x_data, y_data):
         super().__init__()
         
+        # Настройка окна
         self.setWindowTitle("График")
-        self.setFixedSize(700, 519)
-        
-        self.setupUi()
-        
-    def setupUi(self):
+        self.setFixedSize(800, 600)
 
-        self.centralwidget = QtWidgets.QWidget(parent=self)
+        # Создаем объект графика
+        self.plot_widget = PlotWidget(self)
+        self.plot_widget.plot(x_data, y_data)
 
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
-
-        self.graphwidget = PlotWidget(parent=self.centralwidget)
-        
-        
-
-        self.verticalLayout.addWidget(self.graphwidget)
-        self.setCentralWidget(self.centralwidget)
+        # Показываем окно с графиком
+        self.setCentralWidget(self.plot_widget)
