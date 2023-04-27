@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QMainWindow, QWidget, QPushButton, QFileDialog
+from PyQt6.QtWidgets import QMainWindow
 from pyqtgraph import PlotWidget
 
 class GraphWidget(QMainWindow):
@@ -7,7 +7,7 @@ class GraphWidget(QMainWindow):
         
         # Настройка окна
         self.setWindowTitle("График")
-        self.setFixedSize(800, 600)
+        self.resize(1000, 600)
 
         # Создаем объект графика
         self.plot_widget = PlotWidget(self)
