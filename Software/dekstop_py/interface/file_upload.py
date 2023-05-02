@@ -2,7 +2,7 @@ import csv
 
 from PyQt6.QtWidgets import QMainWindow, QFileDialog, QMessageBox
 from PyQt6 import QtCore, QtWidgets
-from database.connect import DB
+from database.connect import Connect
 from interface.graph_widget import GraphWidget
 
 class FileUpload(QMainWindow):
@@ -21,7 +21,7 @@ class FileUpload(QMainWindow):
         self.setupUi()
         
     def setupUi(self):
-        """Интерфейс всего окна"""
+        """Интерфейс окна"""
         
         # Выравнивание элементов по центру
         centralWidget = QtWidgets.QWidget(parent=self)
@@ -47,30 +47,7 @@ class FileUpload(QMainWindow):
         self.setCentralWidget(centralWidget)
         
     def load_data(self):
-        #connect db
-        db = DB()
         """Функция построение графика и его отображение"""
         
-        # Открываем диалоговое окно для выбора файла CSV
-        filename, _ = QFileDialog.getOpenFileName(self, "Открыть файл", "", "CSV Files (*.csv)")
-
-        if filename:
-            # Читаем данные из файла CSV
-            data = []
-            with open(filename, 'r') as file:
-                reader = csv.reader(file)
-                next(reader)  # Пропускаем заголовок
-                for row in reader:
-                    x = float(row[0])
-                    y = float(row[1])
-                    data.append([x, y])
-
-            # Данные для построения графика
-            x_data = [row[0] for row in data]
-            y_data = [row[1] for row in data]
-            
-            # Отрисовка графика
-            self.GraphWidget = GraphWidget(x_data, y_data)
-            self.GraphWidget.show()
-        else:
-            QMessageBox.warning(self, "Ошибка", "Выберите файл!")
+        Connect() # connect database
+        

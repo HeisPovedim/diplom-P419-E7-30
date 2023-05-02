@@ -1,4 +1,3 @@
-# это глобальный валидатор
 import sys
 import traceback as tb
 from PyQt6.QtWidgets import QErrorMessage
@@ -12,5 +11,4 @@ def hook(typeexp,value,tracback):
     err_dialog = QErrorMessage()
     err_dialog.showMessage(f'err: {str(value)}')
 
-#замена дефолт на кастом
-sys.excepthook = hook 
+sys.excepthook = hook
