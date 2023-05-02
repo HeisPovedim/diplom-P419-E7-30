@@ -1,23 +1,24 @@
 import mysql.connector
-from PyQt6.QtWidgets import QApplication, QMessageBox, QWidget
+from PyQt6.QtWidgets import QApplication, QMessageBox
 
 
-class Connection(object):
+class DB(object):
     def __init__(self):
         super().__init__()
-        
+
+        self.cursor = None
         self.con = mysql.connector.connect(
             host='localhost',
             user='root',
-            password='1234',
-            database='mydb'
+            password='12345',
+            database='projectnew'
         )
+        window = QApplication.activeWindow()
 
-        print(self.con)
         if self.con is None:
-            window = QApplication.activeWindow()
-            # QMessageBox.warning(window, "Ошибка", "Не удалось подключиться к базе данных!")
-            print("Ошибка")
+            QMessageBox.warning(window, "Ошибка", "Не удалось подключиться к базе данных!")
         else:
-            print("Ошибка")
+            QMessageBox.information(window, "Ок", " Удалось подключиться к базе данных!")
             self.cursor = self.con.cursor(dictionary=True)
+
+    

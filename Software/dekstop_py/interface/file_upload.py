@@ -2,7 +2,7 @@ import csv
 
 from PyQt6.QtWidgets import QMainWindow, QFileDialog, QMessageBox
 from PyQt6 import QtCore, QtWidgets
-
+from database.connect import DB
 from interface.graph_widget import GraphWidget
 
 class FileUpload(QMainWindow):
@@ -47,6 +47,8 @@ class FileUpload(QMainWindow):
         self.setCentralWidget(centralWidget)
         
     def load_data(self):
+        #connect db
+        db = DB()
         """Функция построение графика и его отображение"""
         
         # Открываем диалоговое окно для выбора файла CSV
