@@ -4,8 +4,8 @@ from PyQt6.QtWidgets import QApplication, QMessageBox
 
 class Connect(object):
     def __init__(self):
-        super().__init__()
 
+        self.cursor = None
         self.con = mysql.connector.connect(
             host='localhost',
             user='root',
@@ -18,3 +18,7 @@ class Connect(object):
             QMessageBox.warning(window, "Ошибка", "Не удалось подключиться к базе данных!")
         else:
             self.cursor = self.con.cursor(dictionary=True)
+            
+    def close(self):
+        self.cursor.close()
+        self.con.close()

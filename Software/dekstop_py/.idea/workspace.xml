@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6edc60e8-78a2-4b5a-805f-067f85fefe14" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/database/requests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/helpers/helpers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/localstorage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/connect.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/connect.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface/file_upload.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/file_upload.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validators/global_validator.py" beforeDir="false" afterPath="$PROJECT_DIR$/validators/global_validator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/requests.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/requests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface/authorization.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/authorization.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface/file_upload.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

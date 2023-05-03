@@ -1,9 +1,11 @@
-from PyQt6 import QtCore, QtWidgets
-from PyQt6.QtWidgets import QMainWindow, QLineEdit
+import sys
 
+from PyQt6 import QtCore, QtWidgets
+
+from interface.personal_account import PersonalAccount
 from database.requests import auth_check
 
-class Authorization(QMainWindow):
+class Authorization(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         
@@ -35,7 +37,7 @@ class Authorization(QMainWindow):
         gridLayout.addWidget(password, 1, 0, 1, 1)
         
         password_input = QtWidgets.QLineEdit(parent=central_widget)
-        password_input.setEchoMode(QLineEdit.EchoMode.Password)
+        password_input.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
         gridLayout.addWidget(password_input, 1, 1, 1, 1)
         
         # кнопки
@@ -49,6 +51,7 @@ class Authorization(QMainWindow):
         
         exit_btn = QtWidgets.QPushButton(parent=central_widget)
         exit_btn.setText("Выйти")
+        exit_btn.clicked.connect(lambda: self.exit())
         buttons.addWidget(exit_btn, 0, QtCore.Qt.AlignmentFlag.AlignBottom)
         
         # Размещение элементов в окне
@@ -58,4 +61,16 @@ class Authorization(QMainWindow):
     def authorization(self, login, password):
         """Функция авторизации"""
         
-        auth_check(login, password)
+        result = auth_check(login, password)
+        
+        if result:
+            self.close()
+            self.window = PersonalAccount(self)
+            self.window.show()
+        else:
+           QtWidgets.QMessageBox.warning(self, "Ошибка", "Неверный логин или пароль!")
+        
+    def exit(self):
+        """Выход из приложения"""
+        
+        self.close()
