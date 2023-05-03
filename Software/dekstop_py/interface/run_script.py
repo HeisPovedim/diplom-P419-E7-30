@@ -1,5 +1,6 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
+from scripts.pool import calc_all
 
 class RunScript(QtWidgets.QMainWindow):
     def __init__(self, parent):
@@ -62,6 +63,11 @@ class RunScript(QtWidgets.QMainWindow):
         # кнопка "Старт"
         btn_start = QtWidgets.QPushButton(parent=central_widget)
         btn_start.setText("Старт")
+        btn_start.clicked.connect(lambda: calc_all(
+            lineEdit_initial_frequency.text(),
+            lineEdit_final_frequency.text(),
+            lineEdit_step.text()
+        ))
         buttons.addWidget(btn_start, 0, QtCore.Qt.AlignmentFlag.AlignBottom)
         
         # кнопка "Выйти"
