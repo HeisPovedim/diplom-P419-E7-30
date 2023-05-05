@@ -19,6 +19,13 @@ class Connect(object):
         else:
             self.cursor = self.con.cursor(dictionary=True)
             
+    def commit(self):
+        """Коммит БД"""
+        
+        self.con.commit()
+        
     def close(self):
+        """Закрытие соединения"""
+        
         self.cursor.close()
         self.con.close()
