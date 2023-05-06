@@ -1,0 +1,92 @@
+.parameters_block{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.element{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-left: 10px;
+    border: 1px solid;
+    border-radius: 2px;
+    padding: 5px;
+}
+/* Стили для формы */
+.form_post_data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 500px;
+  }
+/* общие стили для всей страницы */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+}
+
+h4 {
+    font-weight: bold;
+    margin-top: 40px;
+}
+
+a {
+    color: #3366cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* стили для блока с формой */
+.form_post_data {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form_post_data input[type="text"],
+.form_post_data input[type="number"],
+.form_post_data button,
+.form_post_data label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.form_post_data input[type="text"],
+.form_post_data input[type="number"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+.form_post_data input[type="checkbox"] {
+    margin-left: 5px;
+}
+
+.form_post_data button {
+    background-color: #3366cc;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form_post_data button:hover {
+    background-color: #265ca5;
+}
