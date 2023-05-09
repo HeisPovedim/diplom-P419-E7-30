@@ -7,14 +7,15 @@ from interface.run_script import RunScript
 from data.localstorage import user
 
 class PersonalAccount(QtWidgets.QMainWindow):
-    def __init__(self, parent):
+    # def __init__(self, parent): ПОТОМ РАСКОМЕНТИТЬ, ДОЛЖЕН БЫТЬ РОДИТЕЛЬ
+    def __init__(self):
         super().__init__()
     
         # Настройки окна
         self.setWindowTitle("Личный кабинет")
         self.resize(298, 84)
         
-        self.parent_window = parent
+        # self.parent_window = parent
         
         self.setupUi()
     
@@ -66,7 +67,7 @@ class PersonalAccount(QtWidgets.QMainWindow):
         """Открытие графиков"""
         
         self.widget_graph = GraphWidget()
-        self.widget_graph.show()
+        # self.widget_graph.show()
         
     def open_run_script(self):
         """Открытие окна запуска скрипта"""

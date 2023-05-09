@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6edc60e8-78a2-4b5a-805f-067f85fefe14" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/interface/plot_widgets/plot_fp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/interface/plot_widgets/plot_gp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Documentation/Mikhail/Пояснительная записка.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../Documentation/Mikhail/Пояснительная записка.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/interface/plot_widgets/plot_fa.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/interface/plot_widgets/plot_rs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dekstop_py.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dekstop_py.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interface/graph_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/graph_widget.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interface/personal_account.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/personal_account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface/plot_widgets/plot_gp.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/plot_widgets/plot_gp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,13 +42,15 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/GitHub/Diploma/Software/dekstop_py/interface/plot_widgets",
+    "last_opened_file_path": "D:/Project/GitHub/Diploma/Software/dekstop_py/interface/plot_widgets",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Project\GitHub\Diploma\Software\dekstop_py\interface\plot_widgets" />
       <recent name="D:\GitHub\Diploma\Software\dekstop_py\interface\plot_widgets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
