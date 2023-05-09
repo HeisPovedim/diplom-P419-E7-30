@@ -1,5 +1,7 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
+from interface.graph_widget import GraphWidget
+
 from interface.run_script import RunScript
 
 from data.localstorage import user
@@ -53,18 +55,25 @@ class PersonalAccount(QtWidgets.QMainWindow):
         # копка "Открыть графики"
         open_graph_btn = QtWidgets.QPushButton(parent=central_widget)
         open_graph_btn.setText("Открыть графики")
+        open_graph_btn.clicked.connect(lambda: self.open_graph_widget())
         gridLayout.addWidget(open_graph_btn, 1, 1, 1, 1)
         
         # Размещение элементов в окне
         central_interface.addLayout(gridLayout, 0, 0, 1, 1)
         self.setCentralWidget(central_widget)
         
+    def open_graph_widget(self):
+        """Открытие графиков"""
+        
+        self.widget_graph = GraphWidget()
+        self.widget_graph.show()
+        
     def open_run_script(self):
         """Открытие окна запуска скрипта"""
         
         self.close()
-        self.window = RunScript(self)
-        self.window.show()
+        self.window_script = RunScript(self)
+        self.window_script.show()
         
     def exit(self):
         """Выход и переход к окну авторизации"""
