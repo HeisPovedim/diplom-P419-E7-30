@@ -1,8 +1,10 @@
-import sys
-
+# PyQt6 && LIBS
 from PyQt6 import QtCore, QtWidgets
 
+# IMPORT WINDOWS
 from interface.personal_account import PersonalAccount
+
+# DATABASE
 from database.requests import auth_check
 
 class Authorization(QtWidgets.QMainWindow):

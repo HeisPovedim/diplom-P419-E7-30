@@ -1,6 +1,5 @@
+# PyQt6 && LIBS
 from PyQt6 import QtCore, QtGui, QtWidgets
-
-# from scripts.pool import calc_all
 
 class RunScript(QtWidgets.QMainWindow):
     def __init__(self, parent):

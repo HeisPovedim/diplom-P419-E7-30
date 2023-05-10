@@ -1,14 +1,15 @@
+# PyQt6 && LIBS
 from PyQt6 import QtCore, QtGui, QtWidgets
 
+# IMPORT WINDOWS
 from interface.graph_widget import GraphWidget
-
 from interface.run_script import RunScript
 
+# LOCALSTORAGE
 from data.localstorage import user
 
 class PersonalAccount(QtWidgets.QMainWindow):
-    # def __init__(self, parent): ПОТОМ РАСКОМЕНТИТЬ, ДОЛЖЕН БЫТЬ РОДИТЕЛЬ
-    def __init__(self):
+    def __init__(self, parent):
         super().__init__()
     
         # Настройки окна

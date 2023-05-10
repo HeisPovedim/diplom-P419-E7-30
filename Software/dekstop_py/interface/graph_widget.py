@@ -1,11 +1,11 @@
-from PyQt6.QtWidgets import QMainWindow
-import pyqtgraph as pg
-from pyqtgraph import PlotWidget
-
+# Plot Widget
 from interface.plot_widgets.plot_fp import PlotFp
 from interface.plot_widgets.plot_gp import PlotGp
 from interface.plot_widgets.plot_fa import PlotFa
 from interface.plot_widgets.plot_rs import PlotRs
+
+# HELPERS
+from helpers.helpers import quick_creation_QMainWindow
 
 class GraphWidget(object):
     def __init__(self):
@@ -24,29 +24,17 @@ class GraphWidget(object):
         """Интерфейс окна"""
         
         # График Fp
-        self.graph_fp = QMainWindow()
-        self.graph_fp.setWindowTitle("График Fp")
-        self.graph_fp.resize(1000, 600)
-        self.graph_fp.setCentralWidget(PlotFp())
+        self.graph_fp = quick_creation_QMainWindow("График Fp", 1000, 600, PlotFp())
         self.graph_fp.show()
 
         # График Gp
-        self.graph_gp = QMainWindow()
-        self.graph_gp.setWindowTitle("График Gp")
-        self.graph_gp.resize(1000, 600)
-        self.graph_gp.setCentralWidget(PlotGp())
+        self.graph_gp = quick_creation_QMainWindow("График Gp", 1000, 600, PlotGp())
         self.graph_gp.show()
 
         # График Gp
-        self.graph_fa = QMainWindow()
-        self.graph_fa.setWindowTitle("График fa")
-        self.graph_fa.resize(1000, 600)
-        self.graph_fa.setCentralWidget(PlotFa())
+        self.graph_fa = quick_creation_QMainWindow("График fa", 1000, 600, PlotFa())
         self.graph_fa.show()
 
         # График Rs
-        self.graph_rs = QMainWindow()
-        self.graph_rs.setWindowTitle("График Rs")
-        self.graph_rs.resize(1000, 600)
-        self.graph_rs.setCentralWidget(PlotRs())
+        self.graph_rs = quick_creation_QMainWindow("График Rs", 1000, 600, PlotRs())
         self.graph_rs.show()
