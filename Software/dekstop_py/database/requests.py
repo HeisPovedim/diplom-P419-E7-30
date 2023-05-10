@@ -11,17 +11,19 @@ def auth_check(login, password):
     """Проверка пользователя на существование"""
     
     conn = Connect()
-    if conn.init_connect():
-        
-        cursor = conn.cursor
+    cursor = conn.cursor
+    response = conn.cursor
+    if response:
         
         has_password = hash_generation(password)
-        cursor.execute(f"SELECT * FROM `personals` WHERE `login` = '{login}' AND `password` = '{has_password}'")
+        cursor.execute(f"SELECT * FROM personals WHERE login = '{login}' AND password = '{has_password}'")
+        personal = cursor.fetchone()
+        print(personal)
 
-        if cursor.fetchone():
-            conn.close()
+        if personal:
+            # conn.close()
             user['username'] = login
             return True
         else:
-            conn.close()
+            # conn.close()
             return False
