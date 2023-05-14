@@ -27,11 +27,10 @@ class Connect(object):
             db='diplom'
         )
         
-        self.cursor = self.conn.cursor()
+        self.cursor = self.conn.cursor(pymysql.cursors.DictCursor)
             
         if self.conn is None:
             print("Ошибка подключения к БД!")
-    
     
     def commit(self):
         """Коммит БД"""

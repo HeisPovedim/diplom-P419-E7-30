@@ -4,6 +4,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 # IMPORT WINDOWS
 from interface.graph_widget import GraphWidget
 from interface.run_script import RunScript
+from interface.list_object import ListObject
 
 # LOCALSTORAGE
 from data.localstorage import user
@@ -50,32 +51,45 @@ class PersonalAccount(QtWidgets.QMainWindow):
 
         # кнопка "Запустить скрипт"
         run_script_btn = QtWidgets.QPushButton(parent=central_widget)
-        run_script_btn.setText("Запустить скрипт")
+        run_script_btn.setText("Измерение пьезокерамики")
         run_script_btn.clicked.connect(lambda: self.open_run_script())
         gridLayout.addWidget(run_script_btn, 1, 0, 1, 1)
         
         # копка "Открыть графики"
         open_graph_btn = QtWidgets.QPushButton(parent=central_widget)
-        open_graph_btn.setText("Открыть графики")
+        open_graph_btn.setText("Меню графиков")
         open_graph_btn.clicked.connect(lambda: self.open_graph_widget())
         gridLayout.addWidget(open_graph_btn, 1, 1, 1, 1)
+        
+        # копка "Список объектов"
+        open_graph_btn = QtWidgets.QPushButton(parent=central_widget)
+        open_graph_btn.setText("Открыть список объектов")
+        open_graph_btn.clicked.connect(lambda: self.opne_list_object())
+        gridLayout.addWidget(open_graph_btn, 2, 0, 1, 1)
         
         # Размещение элементов в окне
         central_interface.addLayout(gridLayout, 0, 0, 1, 1)
         self.setCentralWidget(central_widget)
         
+    def opne_list_object(self):
+        """Открыть список объектов"""
+        
+        self.window_list_object = ListObject()
+        self.window_list_object.show()
+        
+        
     def open_graph_widget(self):
         """Открытие графиков"""
         
-        self.widget_graph = GraphWidget()
-        # self.widget_graph.show()
+        self.window_graph_widget = GraphWidget()
+        self.window_graph_widget.show()
         
     def open_run_script(self):
         """Открытие окна запуска скрипта"""
         
         self.close()
-        self.window_script = RunScript(self)
-        self.window_script.show()
+        self.window_run_script = RunScript(self)
+        self.window_run_script.show()
         
     def exit(self):
         """Выход и переход к окну авторизации"""

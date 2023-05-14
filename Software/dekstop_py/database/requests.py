@@ -12,13 +12,11 @@ def auth_check(login, password):
     
     conn = Connect()
     cursor = conn.cursor
-    response = conn.cursor
-    if response:
+    if conn.cursor:
         
         has_password = hash_generation(password)
         cursor.execute(f"SELECT * FROM personals WHERE login = '{login}' AND password = '{has_password}'")
         personal = cursor.fetchone()
-        print(personal)
 
         if personal:
             # conn.close()
@@ -27,3 +25,23 @@ def auth_check(login, password):
         else:
             # conn.close()
             return False
+        
+def getting_parameters(id, type):
+    """
+        Получение параметров объекта
+        id - номер получаемого объекта
+        type - обозначает тип получаемых параметров, т.е. TRUE получить все из таблицы,
+        а FALSE получить все из таблицы по определенному id
+    """
+
+    conn = Connect()
+    cursor = conn.cursor
+    if conn.cursor:
+        if type:
+            cursor.execute("SELECT * FROM parameters")
+            conn.close()
+            return cursor.fetchall()
+        else:
+            cursor.execute(f"SELECT * FROM parameters WHERE objects_idobjects = '{id}'")
+            conn.close()
+            return [list(item.values()) for item in cursor.fetchall()]
