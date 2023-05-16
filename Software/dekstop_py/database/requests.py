@@ -26,7 +26,7 @@ def auth_check(login, password):
             # conn.close()
             return False
         
-def getting_parameters(id, type):
+def get_parameters(id, type):
     """
         Получение параметров объекта
         id - номер получаемого объекта
@@ -45,3 +45,13 @@ def getting_parameters(id, type):
             cursor.execute(f"SELECT * FROM parameters WHERE objects_idobjects = '{id}'")
             conn.close()
             return [list(item.values()) for item in cursor.fetchall()]
+        
+def get_objects():
+    """Получение списка объектов"""
+    
+    conn = Connect()
+    cursor = conn.cursor
+    if conn.cursor:
+        cursor.execute("SELECT * FROM objects")
+        conn.close()
+        return cursor.fetchall()

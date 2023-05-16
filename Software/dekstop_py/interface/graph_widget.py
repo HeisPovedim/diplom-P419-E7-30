@@ -5,7 +5,7 @@ from PyQt6 import QtWidgets
 from interface.plot_widgets.plot import PlotGraph
 
 # DATABASE
-from database.requests import getting_parameters
+from database.requests import get_parameters
 
 # HELPERS
 from helpers.helpers import quick_creation_QMainWindow
@@ -69,7 +69,7 @@ class GraphWidget(QtWidgets.QMainWindow):
         rp_parameters = []
         cp_parameters = []
         
-        for result in getting_parameters(id, False):  # получение всех параметров
+        for result in get_parameters(id, False):  # получение всех параметров
             
             id_parameters.append(result[0])
             freq.append(result[1])
@@ -85,26 +85,22 @@ class GraphWidget(QtWidgets.QMainWindow):
         elif current_select == "График ФЧХ":
             pass
         elif current_select == "График зависимости проводимости Gp от частоты F":
-            # График Gp
             self.graph_gp = quick_creation_QMainWindow(
                 "График Gp", 1000, 600,
                 PlotGraph(freq, gp_parameters, "Gp")
             )
             self.graph_gp.show()
         elif current_select == "График зависимости емкости Cp от частоты F":
-            # График Cp
             self.graph_cp = quick_creation_QMainWindow(
                 "График Cp", 1000, 600,
                 PlotGraph(freq, cp_parameters, "Cp"))
             self.graph_cp.show()
         elif current_select == "График зависимости сопротивления Rp от частоты F":
-            # График Rp
             self.graph_rp = quick_creation_QMainWindow(
                 "График Rp", 1000, 600,
                 PlotGraph(freq, rp_parameters, "Rp"))
             self.graph_rp.show()
         elif current_select == "График зависимости угла Phi от частоты F":
-            # График Phi
             self.graph_phi = quick_creation_QMainWindow(
                 "График Phi", 1000, 600,
                 PlotGraph(freq, phi_parameters, "Phi")

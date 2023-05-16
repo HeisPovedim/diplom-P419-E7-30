@@ -1,0 +1,68 @@
+from PyQt6.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem
+
+# DATABASE
+from database.requests import get_parameters, get_objects
+
+
+class ListObject(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("Список объектов")
+        self.resize(1000, 800)
+
+        self.setupUi()
+
+    def setupUi(self):
+        """Таблица параметров"""
+
+        # Создание таблицы
+        table = QTableWidget(self)
+        table.setColumnCount(10)  # Установка количества столбцов
+
+        # Добавление данных в таблицу
+        parameters = get_parameters(None, True)
+        headers = [
+            "ID Параметра",
+            "Частота",
+            "z_real_path_parameters",
+            "z_imaginary_part_parameters",
+            "Phi",
+            "Gp",
+            "Rp",
+            "Cp",
+            "Дата измерения",
+            "ID Объекта"
+        ]
+        table.setHorizontalHeaderLabels(headers)
+        table.setRowCount(len(parameters))  # Установка количества строк
+        table.setColumnCount(len(headers))
+        print(parameters)
+
+        for row, data in enumerate(parameters):
+            for col, header in enumerate(headers):
+                if header == 'ID Параметра':
+                    item = QTableWidgetItem(str(data['idparameters']))
+                elif header == 'Частота':
+                    item = QTableWidgetItem(str(data['Freq']))
+                elif header == 'z_real_path_parameters':
+                    item = QTableWidgetItem(str(data['z_real_path_parameters']))
+                elif header == 'z_imaginary_part_parameters':
+                    item = QTableWidgetItem(str(data['z_imaginary_part_parameters']))
+                elif header == 'Phi':
+                    item = QTableWidgetItem(str(data['phi_parameters']))
+                elif header == 'Gp':
+                    item = QTableWidgetItem(str(data['gp_parameters']))
+                elif header == 'Rp':
+                    item = QTableWidgetItem(str(data['rp_parameters']))
+                elif header == 'Cp':
+                    item = QTableWidgetItem(str(data['cp_parameters']))
+                elif header == 'Дата измерения':
+                    item = QTableWidgetItem(str(data['measurement_date']))
+                elif header == 'ID Объекта':
+                    item = QTableWidgetItem(str(data['objects_idobjects']))
+
+                table.setItem(row, col, item)
+                table.setColumnWidth(col, 200)
+
+        self.setCentralWidget(table)
