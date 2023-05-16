@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6edc60e8-78a2-4b5a-805f-067f85fefe14" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Documentation/Mikhail/Charts/Десктоп/.$Диаграмма компонентов.drawio.bkp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Documentation/Mikhail/Charts/Десктоп/Диаграмма компонентов.drawio" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Documentation/Mikhail/Пояснительная записка.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../Documentation/Mikhail/Пояснительная записка.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/connect.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/connect.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/requests.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/requests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface/graph_widget.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/graph_widget.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface/list_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/list_object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface/personal_account.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/personal_account.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

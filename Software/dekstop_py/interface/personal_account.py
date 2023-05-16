@@ -64,14 +64,14 @@ class PersonalAccount(QtWidgets.QMainWindow):
         # копка "Список объектов"
         open_graph_btn = QtWidgets.QPushButton(parent=central_widget)
         open_graph_btn.setText("Открыть список объектов")
-        open_graph_btn.clicked.connect(lambda: self.opne_list_object())
+        open_graph_btn.clicked.connect(lambda: self.open_list_object())
         gridLayout.addWidget(open_graph_btn, 2, 0, 1, 1)
         
         # Размещение элементов в окне
         central_interface.addLayout(gridLayout, 0, 0, 1, 1)
         self.setCentralWidget(central_widget)
         
-    def opne_list_object(self):
+    def open_list_object(self):
         """Открыть список объектов"""
         
         self.window_list_object = ListObject()
