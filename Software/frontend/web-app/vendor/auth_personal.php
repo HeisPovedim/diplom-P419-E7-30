@@ -15,10 +15,14 @@ if (empty($personal)){
     $_SESSION['err'] = 'Неверные данные';
     header("Location: ../auth_personal_page.php");
 }else{
-    setcookie("idpers",$personal['idpersonals'],time()+28000,'/');
-    header("Location: ../personal_page.php");
+    if ($personal['access']){
+        setcookie("idpers",$personal['idpersonals'],time()+28000,'/');
+        header("Location: ../personal_page.php");
+    }else{
+        $_SESSION['err'] = 'Вы заблокированы, обратитесть к администратору';
+        header("Location: ../auth_personal_page.php");
+    }
+
 }
-
-
 
 ?>

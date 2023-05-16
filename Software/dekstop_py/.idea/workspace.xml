@@ -5,11 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6edc60e8-78a2-4b5a-805f-067f85fefe14" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Documentation/Mikhail/Charts/Десктоп/.$Диаграмма компонентов.drawio.bkp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Documentation/Mikhail/Charts/Десктоп/Диаграмма компонентов.drawio" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Documentation/Mikhail/Charts/Десктоп/.$Диаграмма компонентов - вэб.drawio.bkp" beforeDir="false" afterPath="$PROJECT_DIR$/../../Documentation/Mikhail/Charts/Десктоп/.$Диаграмма компонентов - вэб.drawio.bkp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Documentation/Mikhail/Charts/Десктоп/.$Диаграмма компонентов - вэб.drawio.dtmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Documentation/Mikhail/Charts/Десктоп/Диаграмма компонентов - вэб.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/../../Documentation/Mikhail/Charts/Десктоп/Диаграмма компонентов - вэб.drawio" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Documentation/Mikhail/Пояснительная записка.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../Documentation/Mikhail/Пояснительная записка.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface/personal_account.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/personal_account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface/run_script.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface/run_script.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/web-app/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/web-app/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/web-app/.idea/php.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/web-app/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/web-app/.idea/web-app.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/web-app/admin_page.php" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/web-app/admin_page.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/web-app/auth_admin_page.php" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/web-app/auth_admin_page.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/web-app/auth_personal_page.php" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/web-app/auth_personal_page.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/web-app/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/web-app/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/web-app/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/web-app/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/web-app/personal_page.php" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/web-app/personal_page.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/web-app/vendor/auth_personal.php" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/web-app/vendor/auth_personal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/web-app/vendor/create_report.php" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/web-app/vendor/create_report.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/web-app/vendor/delete_data_parameter.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/web-app/view_object_page.php" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/web-app/view_object_page.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

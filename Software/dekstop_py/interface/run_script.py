@@ -6,7 +6,7 @@ class RunScript(QtWidgets.QMainWindow):
         super().__init__()
         
         # Настройки окна
-        self.setWindowTitle("Запуск скрипта")
+        self.setWindowTitle("Измерение пьезокерамики")
         self.resize(303, 118)
         
         self.parent_window = parent

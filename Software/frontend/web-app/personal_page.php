@@ -26,12 +26,19 @@ if(empty($_COOKIE['idpers'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/index.css">
     <title>Кабинет оператора</title>
+    <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
-    <h4>Добро пожаловать: <?= $personal['login'] ?></h4>
-    <a href="./logout.php">Выйти</a>
+    <header>
+        <div class="header-container personal-header">
+            <a href="./index.php"><img src="./assets/img/logo.svg" alt="logo"></a>
+            <div class="personal-header__info-user">
+                <span>Логин: <?= $personal['login'] ?></span>
+                <a href="./logout.php">Выйти</a>
+            </div>
+        </div>
+    </header>
     <h4>Правила работы с прибором</h4>
-
     <h4>Добавление исследуемого объекта</h4>
     <div>
         <form action="./vendor/create_object.php" method="post" class="form_post_data">
