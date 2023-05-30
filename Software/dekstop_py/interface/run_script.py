@@ -1,6 +1,9 @@
 # PyQt6 && LIBS
 from PyQt6 import QtCore, QtGui, QtWidgets
 
+# Script
+from scripts.controller_e730 import ControllerE730
+
 class RunScript(QtWidgets.QMainWindow):
     def __init__(self, parent):
         super().__init__()
@@ -62,12 +65,12 @@ class RunScript(QtWidgets.QMainWindow):
         # кнопка "Старт"
         btn_start = QtWidgets.QPushButton(parent=central_widget)
         btn_start.setText("Старт")
-        # btn_start.clicked.connect(lambda: calc_all(
-        #     lineEdit_initial_frequency.text(),
-        #     lineEdit_final_frequency.text(),
-        #     lineEdit_step.text(),
-        #     checkBox.isChecked()
-        # ))
+        btn_start.clicked.connect(lambda: self.run_script_controller(
+            lineEdit_initial_frequency.text(),
+            lineEdit_final_frequency.text(),
+            lineEdit_step.text(),
+            checkBox.isChecked()
+        ))
         buttons.addWidget(btn_start, 0, QtCore.Qt.AlignmentFlag.AlignBottom)
         
         # кнопка "Выйти"
@@ -79,6 +82,12 @@ class RunScript(QtWidgets.QMainWindow):
         # Размещение элементов в окне
         central_interface.addLayout(gridLayout, 0, 0, 1, 1)
         self.setCentralWidget(central_widget)
+        
+    def run_script_controller(self, initial_freq, final_freq, step, z_only):
+        """Запуск скрипта контроллера E7-30"""
+        
+        self.controller_e730 = ControllerE730()
+        
     
     def exit(self):
         """Выход и переход к окну авторизации"""

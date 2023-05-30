@@ -15,7 +15,7 @@ def auth_check(login, password):
     if conn.cursor:
         
         has_password = hash_generation(password)
-        cursor.execute(f"SELECT * FROM personals WHERE login = '{login}' AND password = '{has_password}'")
+        cursor.execute(f"SELECT * FROM users WHERE login = '{login}' AND password = '{has_password}'")
         personal = cursor.fetchone()
 
         if personal:

@@ -8,6 +8,7 @@ from interface.plot_widgets.plot import PlotGraph
 from database.requests import get_parameters
 
 # HELPERS
+import numpy as np
 from helpers.helpers import quick_creation_QMainWindow
 
 class GraphWidget(QtWidgets.QMainWindow):
@@ -16,7 +17,7 @@ class GraphWidget(QtWidgets.QMainWindow):
         
         # Настройка окна
         self.setWindowTitle("Меню графиков")
-        self.setFixedSize(298, 84)
+        self.setFixedSize(298, 100)
         self.setCentralWidget(QtWidgets.QWidget())
         
         # Инициализация переменных
@@ -24,6 +25,8 @@ class GraphWidget(QtWidgets.QMainWindow):
         self.graph_gp = None
         self.graph_rp = None
         self.graph_cp = None
+        self.graph_amplitudes = None
+        self.graph_phases = None
 
         # Инициализация интерфейса
         self.setupUi()
@@ -43,7 +46,6 @@ class GraphWidget(QtWidgets.QMainWindow):
             "График зависимости проводимости Gp от частоты F",
             "График зависимости емкости Cp от частоты F",
             "График зависимости сопротивления Rp от частоты F",
-            "График зависимости угла Phi от частоты F"
         ])
         btn_start = QtWidgets.QPushButton("Построить графики")
         btn_start.clicked.connect(lambda: self.build_graphs(
@@ -68,6 +70,7 @@ class GraphWidget(QtWidgets.QMainWindow):
         gp_parameters = []
         rp_parameters = []
         cp_parameters = []
+        z_complex_parameters = []
         
         for result in get_parameters(id, False):  # получение всех параметров
             
@@ -81,9 +84,22 @@ class GraphWidget(QtWidgets.QMainWindow):
             cp_parameters.append(result[7])
         
         if current_select == "График АЧХ":
-            pass
+            for i, value in enumerate(z_real_path_parameters):
+                z_complex_parameters.append(complex(value, z_imaginary_part_parameters[i]))
+            
+            amplitudes = np.abs(z_complex_parameters)
+            
+            self.graph_amplitudes = quick_creation_QMainWindow(
+                "График AЧХ", 1000, 600,
+                PlotGraph(freq, amplitudes, "АЧХ")
+            )
+            self.graph_amplitudes.show()
         elif current_select == "График ФЧХ":
-            pass
+            self.graph_phi = quick_creation_QMainWindow(
+                "График ФЧХ", 1000, 600,
+                PlotGraph(freq, phi_parameters, "ФЧХ")
+            )
+            self.graph_phi.show()
         elif current_select == "График зависимости проводимости Gp от частоты F":
             self.graph_gp = quick_creation_QMainWindow(
                 "График Gp", 1000, 600,
@@ -100,9 +116,3 @@ class GraphWidget(QtWidgets.QMainWindow):
                 "График Rp", 1000, 600,
                 PlotGraph(freq, rp_parameters, "Rp"))
             self.graph_rp.show()
-        elif current_select == "График зависимости угла Phi от частоты F":
-            self.graph_phi = quick_creation_QMainWindow(
-                "График Phi", 1000, 600,
-                PlotGraph(freq, phi_parameters, "Phi")
-            )
-            self.graph_phi.show()
