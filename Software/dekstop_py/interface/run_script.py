@@ -64,7 +64,7 @@ class RunScript(QtWidgets.QMainWindow):
         
         # кнопка "Старт"
         btn_start = QtWidgets.QPushButton(parent=central_widget)
-        btn_start.setText("Старт")
+        btn_start.setText("Старт")a
         btn_start.clicked.connect(lambda: self.run_script_controller(
             lineEdit_initial_frequency.text(),
             lineEdit_final_frequency.text(),
