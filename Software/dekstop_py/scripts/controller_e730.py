@@ -5,14 +5,16 @@
 
 import serial
 import struct
-
+from PyQt6.QtWidgets import QMessageBox,QWidget
 from math import *
-from datetime import datetime
+from typing import Any, Union
+from database.requests import add_parameters_parallel,add_parameters_consistent
+
 
 
 class ControllerE730(object):
     def __init__(self, id_object: int, fstart: int, fend: int, step: int, z_only: bool):
-        
+        self.modal = QWidget()
         self.id_object = id_object
         
         # ПАРАМЕТРЫ
@@ -31,8 +33,9 @@ class ControllerE730(object):
         Также может потребоваться установить драйверы для вашего устройства,
         чтобы оно было распознано как COM-порт в Windows.
         '''
+
         self.ser = serial.Serial(
-            port='/dev/ttyUSB0',
+            port='COM0',
             baudrate=9600,
             parity=serial.PARITY_NONE,
             stopbits=serial.STOPBITS_ONE,
@@ -44,8 +47,18 @@ class ControllerE730(object):
         self.parameters = (0xAA, 72)  # выдача полной измеряемой информации
         self.scheme = (0xAA, 0x0d)  # смена схемы замещения
         # -----------------------------------------------------
+
+    # utils
+    def get_real_and_imag_parts(self,complex_num: Union[complex, Any]) -> tuple[float, float]:
+        if isinstance(complex_num, complex):
+            real_part = complex_num.real
+            imag_part = complex_num.imag
+            return real_part, imag_part
+        else:
+            raise ValueError("Input is not a complex number.")
+
+    # end utils
         # ----------Проверки и перевод прибора в состояние по-умолчанию----------
-    
     def set_default(self):
         """Проверки и перевод прибора в состояние по-умолчанию"""
         
@@ -55,10 +68,11 @@ class ControllerE730(object):
                 checkout = self.ser.read(2)
                 if struct.unpack('>2B', checkout) == self.default:
                     self.ser.read(4)
+                    return True
                 else:
-                    print(">> Неполадки с портом\n")
+                    QMessageBox.warning(self.modal,'Ошибка подключения','неполадки с портом')
         except struct.error:
-            print(">> Нет соединения с прибором\n")
+            QMessageBox.warning(self.modal,'Ошибка подключения','Нет соединения с прибором')
         # -----------------------------------------------------------------------
         # #-----------------------Изменение схемы замещения-----------------------
     
@@ -117,23 +131,24 @@ class ControllerE730(object):
             F_list_Consistent.append(i / 1000.)
             Z_list.append(z)
             Phi_list.append(fi)
-        # #-----------------------------------------------------------------------
-
-        date = datetime.today()
-        
-        formatted_date = date.strftime('%Y-%m-%d')
-        default_value = None
-
+        # #----------------------------------------------------------------------- 
+        # 
+        # Запись результатов измерия в базу данных      
         if not self.z_only:
-            
-            sql = f"""INSERT INTO `diplom`.`parameters`
-                    (`Freq`, `z_real_path_parameters`, `z_imaginary_part_parameters`, `phi_parameters`, `gp_parameters`, `rp_parameters`, `cp_parameters`, `measurement_date`, `objects_idobjects`)
-                    VALUES ('{F_list_Parallel[0]}', '{default_value}', '{default_value}', '{default_value}', '{Gp_list}', '{Rp_list}', '{Cp_list}', '{formatted_date}', '{self.id_object}');"""
-            
-            sql = f"""INSERT INTO `diplom`.`parameters`
-                    (`Freq`, `z_real_path_parameters`, `z_imaginary_part_parameters`, `phi_parameters`, `gp_parameters`, `rp_parameters`, `cp_parameters`, `measurement_date`, `objects_idobjects`)
-                    VALUES ('{F_list_Consistent[0]}', '{Z_list}', '{Z_list}', '{Phi_list}', '{default_value}', '{default_value}', '{default_value}', '{formatted_date}', '{self.id_object}');"""
+            # call add parallel and consistent
+
+            # перебор массива в котором хранится значение частот измерений на парал схеме замещения
+            for i,freq in enumerate(F_list_Parallel):
+                add_parameters_parallel(freq,Gp_list[i],Rp_list[i],Cp_list[i],self.id_object)
+
+            # перебор массива в котором хранится значение частот измерений на последовательной схеме замещения
+            for i,freq in enumerate(F_list_Consistent):
+                real,imaginary = self.get_real_and_imag_parts(Z_list[i])
+                add_parameters_consistent(freq,real,imaginary,Phi_list[i],self.id_object)
+
         else:
-            sql = f"""INSERT INTO `diplom`.`parameters`
-                    (`Freq`, `z_real_path_parameters`, `z_imaginary_part_parameters`, `phi_parameters`, `gp_parameters`, `rp_parameters`, `cp_parameters`, `measurement_date`, `objects_idobjects`)
-                    VALUES ('{F_list_Consistent[0]}', '{Z_list}', '{Z_list}', '{Phi_list}', '{default_value}', '{default_value}', '{default_value}', '{formatted_date}', '{self.id_object}');"""
+            # перебор массива в котором хранится значение частот измерений на последовательной схеме замещения
+
+            for i,freq in enumerate(F_list_Consistent):
+                real,imaginary = self.get_real_and_imag_parts(Z_list[i])
+                add_parameters_consistent(freq,real,imaginary,Phi_list[i],self.id_object)

@@ -5,7 +5,7 @@ from PyQt6 import QtWidgets
 from interface.plot_widgets.plot import PlotGraph
 
 # DATABASE
-from database.requests import get_parameters
+from database.requests import get_parameters,check_object
 
 # HELPERS
 import numpy as np
@@ -61,58 +61,62 @@ class GraphWidget(QtWidgets.QMainWindow):
         
     def build_graphs(self, id, current_select):
         """Функция построения графиков"""
-        
-        id_parameters = []
-        freq = []
-        z_real_path_parameters = []
-        z_imaginary_part_parameters = []
-        phi_parameters = []
-        gp_parameters = []
-        rp_parameters = []
-        cp_parameters = []
-        z_complex_parameters = []
-        
-        for result in get_parameters(id, False):  # получение всех параметров
+        response = check_object(id)
+        if response:
+            QtWidgets.QMessageBox.information(self,'Найден объект',f"Выполняется построение графика для объекта: {response['name']}")
+            id_parameters = []
+            freq = []
+            z_real_path_parameters = []
+            z_imaginary_part_parameters = []
+            phi_parameters = []
+            gp_parameters = []
+            rp_parameters = []
+            cp_parameters = []
+            z_complex_parameters = []
             
-            id_parameters.append(result[0])
-            freq.append(result[1])
-            z_real_path_parameters.append(result[2])
-            z_imaginary_part_parameters.append(result[3])
-            phi_parameters.append(result[4])
-            gp_parameters.append(result[5])
-            rp_parameters.append(result[6])
-            cp_parameters.append(result[7])
-        
-        if current_select == "График АЧХ":
-            for i, value in enumerate(z_real_path_parameters):
-                z_complex_parameters.append(complex(value, z_imaginary_part_parameters[i]))
+            for result in get_parameters(id, False):  # получение всех параметров
+                
+                id_parameters.append(result[0])
+                freq.append(result[1])
+                z_real_path_parameters.append(result[2])
+                z_imaginary_part_parameters.append(result[3])
+                phi_parameters.append(result[4])
+                gp_parameters.append(result[5])
+                rp_parameters.append(result[6])
+                cp_parameters.append(result[7])
             
-            amplitudes = np.abs(z_complex_parameters)
-            
-            self.graph_amplitudes = quick_creation_QMainWindow(
-                "График AЧХ", 1000, 600,
-                PlotGraph(freq, amplitudes, "АЧХ")
-            )
-            self.graph_amplitudes.show()
-        elif current_select == "График ФЧХ":
-            self.graph_phi = quick_creation_QMainWindow(
-                "График ФЧХ", 1000, 600,
-                PlotGraph(freq, phi_parameters, "ФЧХ")
-            )
-            self.graph_phi.show()
-        elif current_select == "График зависимости проводимости Gp от частоты F":
-            self.graph_gp = quick_creation_QMainWindow(
-                "График Gp", 1000, 600,
-                PlotGraph(freq, gp_parameters, "Gp")
-            )
-            self.graph_gp.show()
-        elif current_select == "График зависимости емкости Cp от частоты F":
-            self.graph_cp = quick_creation_QMainWindow(
-                "График Cp", 1000, 600,
-                PlotGraph(freq, cp_parameters, "Cp"))
-            self.graph_cp.show()
-        elif current_select == "График зависимости сопротивления Rp от частоты F":
-            self.graph_rp = quick_creation_QMainWindow(
-                "График Rp", 1000, 600,
-                PlotGraph(freq, rp_parameters, "Rp"))
-            self.graph_rp.show()
+            if current_select == "График АЧХ":
+                for i, value in enumerate(z_real_path_parameters):
+                    z_complex_parameters.append(complex(value, z_imaginary_part_parameters[i]))
+                
+                amplitudes = np.abs(z_complex_parameters)
+                
+                self.graph_amplitudes = quick_creation_QMainWindow(
+                    "График AЧХ", 1000, 600,
+                    PlotGraph(freq, amplitudes, "АЧХ")
+                )
+                self.graph_amplitudes.show()
+            elif current_select == "График ФЧХ":
+                self.graph_phi = quick_creation_QMainWindow(
+                    "График ФЧХ", 1000, 600,
+                    PlotGraph(freq, phi_parameters, "ФЧХ")
+                )
+                self.graph_phi.show()
+            elif current_select == "График зависимости проводимости Gp от частоты F":
+                self.graph_gp = quick_creation_QMainWindow(
+                    "График Gp", 1000, 600,
+                    PlotGraph(freq, gp_parameters, "Gp")
+                )
+                self.graph_gp.show()
+            elif current_select == "График зависимости емкости Cp от частоты F":
+                self.graph_cp = quick_creation_QMainWindow(
+                    "График Cp", 1000, 600,
+                    PlotGraph(freq, cp_parameters, "Cp"))
+                self.graph_cp.show()
+            elif current_select == "График зависимости сопротивления Rp от частоты F":
+                self.graph_rp = quick_creation_QMainWindow(
+                    "График Rp", 1000, 600,
+                    PlotGraph(freq, rp_parameters, "Rp"))
+                self.graph_rp.show()
+        else:
+            QtWidgets.QMessageBox.warning(self,'Ошибка идентификатора','Указан неверный id объекта')

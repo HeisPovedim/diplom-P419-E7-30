@@ -12,7 +12,7 @@ from data.localstorage import user
 class PersonalAccount(QtWidgets.QMainWindow):
     def __init__(self, parent):
         super().__init__()
-    
+        self.auth_wind = parent
         # Настройки окна
         self.setWindowTitle("Личный кабинет")
         self.resize(298, 84)
@@ -75,24 +75,26 @@ class PersonalAccount(QtWidgets.QMainWindow):
         """Открыть список объектов"""
         
         self.window_list_object = ListObject()
-        self.window_list_object.show()
+        self.window_list_object.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
+        self.window_list_object.showMaximized()
         
         
     def open_graph_widget(self):
         """Открытие графиков"""
         
         self.window_graph_widget = GraphWidget()
+        self.window_graph_widget.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
         self.window_graph_widget.show()
         
     def open_run_script(self):
         """Открытие окна запуска скрипта"""
         
-        self.close()
         self.window_run_script = RunScript(self)
+        self.window_run_script.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
         self.window_run_script.show()
         
     def exit(self):
         """Выход и переход к окну авторизации"""
         
         self.close()
-        self.parent_window.show()
+        self.auth_wind.show()
