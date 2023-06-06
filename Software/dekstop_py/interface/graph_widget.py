@@ -12,15 +12,16 @@ import numpy as np
 from helpers.helpers import quick_creation_QMainWindow
 
 class GraphWidget(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self, parent):
         super().__init__()
         
         # Настройка окна
         self.setWindowTitle("Меню графиков")
-        self.setFixedSize(298, 100)
+        self.setFixedSize(298, 125)
         self.setCentralWidget(QtWidgets.QWidget())
         
         # Инициализация переменных
+        self.parent_window = parent
         self.graph_phi = None
         self.graph_gp = None
         self.graph_rp = None
@@ -53,14 +54,19 @@ class GraphWidget(QtWidgets.QMainWindow):
             select_graph.currentText()
         ))
         
+        btn_exit = QtWidgets.QPushButton("Выйти")
+        btn_exit.clicked.connect(lambda: self.exit())
+        
         grid.addWidget(input_object, 0, 1)
         grid.addWidget(select_graph, 1, 0, 1, 2)
         grid.addWidget(btn_start, 2, 0, 1, 2)
+        grid.addWidget(btn_exit, 3, 0 , 1, 2)
         
         self.centralWidget().setLayout(grid)
         
     def build_graphs(self, id, current_select):
         """Функция построения графиков"""
+        
         response = check_object(id)
         if response:
             QtWidgets.QMessageBox.information(self,'Найден объект',f"Выполняется построение графика для объекта: {response['name']}")
@@ -120,3 +126,9 @@ class GraphWidget(QtWidgets.QMainWindow):
                 self.graph_rp.show()
         else:
             QtWidgets.QMessageBox.warning(self,'Ошибка идентификатора','Указан неверный id объекта')
+    
+    def exit(self):
+        """Выход из окна"""
+        
+        self.close()
+        self.parent_window.show()

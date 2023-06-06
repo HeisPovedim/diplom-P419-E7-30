@@ -82,8 +82,8 @@ class PersonalAccount(QtWidgets.QMainWindow):
     def open_graph_widget(self):
         """Открытие графиков"""
         
-        self.window_graph_widget = GraphWidget()
-        self.window_graph_widget.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
+        self.window_graph_widget = GraphWidget(self)
+        self.close()
         self.window_graph_widget.show()
         
     def open_run_script(self):
@@ -91,6 +91,7 @@ class PersonalAccount(QtWidgets.QMainWindow):
         
         self.window_run_script = RunScript(self)
         self.window_run_script.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
+        self.close()
         self.window_run_script.show()
         
     def exit(self):

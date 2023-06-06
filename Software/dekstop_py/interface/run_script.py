@@ -29,13 +29,12 @@ class RunScript(QtWidgets.QMainWindow):
 
         # id объекта Label
         label_id_object = QtWidgets.QLabel(parent=central_widget)
-        label_id_object.setText("id объекта:")
+        label_id_object.setText("ID Объекта:")
         gridLayout.addWidget(label_id_object, 0, 0, 1, 1)
         
         # Введите id объекта
         self.id_object = QtWidgets.QLineEdit(parent=central_widget)
         self.id_object.setValidator(validator_number)
-        self.id_object.setPlaceholderText(" Введите id объекта")
         gridLayout.addWidget(self.id_object, 0, 1, 1, 1)
 
         # начальная частота Label
@@ -122,4 +121,6 @@ class RunScript(QtWidgets.QMainWindow):
     
     def exit(self):
         """Выход и переход к окну авторизации"""
+        
         self.close()
+        self.parent_window.show()
